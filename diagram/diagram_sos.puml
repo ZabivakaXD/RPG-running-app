@@ -1,0 +1,36 @@
+@startuml
+title Состояния боя с боссом
+
+state "Подготовка" as Prep
+state "Готов к старту" as Ready
+state "Бой активен" as Active
+state "Пауза" as Paused
+state "Победа" as Victory
+state "Бой прерван" as Interrupted
+
+[*] --> Prep : Бегун выбрал босса
+Prep --> Ready : Данные босса и персонажа загружены
+Prep --> [*] : Ошибка загрузки
+
+Ready --> Active : Бегун начал пробежку
+Active --> Paused : Бегун поставил на паузу
+Paused --> Active : Бегун возобновил пробежку
+
+Active --> Victory : HP босса = 0
+Active --> Interrupted : Бегун завершил пробежку досрочно
+Paused --> Interrupted : Бегун завершил пробежку
+
+Victory --> [*]
+Interrupted --> [*]
+
+Prep : entry / запросить данные босса и персонажа
+Ready : entry / запустить отслеживание GPS
+Active : do / получать GPS, считать дистанцию и темп
+Active : do / рассчитывать урон, уменьшать HP босса
+Paused : entry / приостановить расчёт дистанции и урона
+Victory : entry / начислить опыт и награду
+Victory : entry / проверить повышение уровня
+Victory : exit / сохранить результат
+Interrupted : entry / начислить опыт за дистанцию
+Interrupted : exit / сохранить результат
+@enduml

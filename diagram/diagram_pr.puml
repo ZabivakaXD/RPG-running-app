@@ -1,0 +1,56 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Бегун" as User
+actor "Администратор" as Admin
+actor "GPS-сервис" as GPS
+
+rectangle "Беговое RPG-приложение" {
+  usecase "Зарегистрироваться / Войти" as UC1
+  usecase "Настроить профиль и персонажа" as UC2
+  usecase "Начать пробежку" as UC3
+  usecase "Отслеживать маршрут и темп" as UC4
+  usecase "Завершить пробежку" as UC5
+  usecase "Получить опыт" as UC6
+  usecase "Повлучить новый уровень" as UC7
+  usecase "Прокачать характеристики" as UC8
+  usecase "Сразиться с боссом" as UC9
+  usecase "Выполнить ежедневный квест" as UC10
+  usecase "Получить награду" as UC11
+  usecase "Просмотреть статистику\nи историю пробежек" as UC12
+  usecase "Просмотреть достижения" as UC13
+
+  usecase "Управлять боссами" as A1
+  usecase "Управлять квестами и наградами" as A2
+  usecase "Настраивать баланс опыта" as A3
+  usecase "Просматривать статистику\nпользователей" as A4
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC8
+User --> UC9
+User --> UC10
+User --> UC12
+User --> UC13
+
+
+UC3 ..> UC4 : <<include>>
+UC3 ..> UC5 : <<include>>
+UC5 ..> UC6 : <<include>>
+UC9 ..> UC3 : <<include>>
+UC10 ..> UC11 : <<include>>
+UC10 ..> UC5 : <<include>>
+
+UC11 ..> UC9 : <<extend>>
+UC7 ..> UC6 : <<extend>>
+
+UC4 --> GPS
+
+Admin --> A1
+Admin --> A2
+Admin --> A3
+Admin --> A4
+@enduml
