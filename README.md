@@ -9,3 +9,5 @@
 [Диаграмма прецедентов](https://github.com/ZabivakaXD/RPG-running-app/blob/main/diagram/диаграмма_прецедентов.png)
 
 [Диаграмма классов](https://github.com/ZabivakaXD/RPG-running-app/blob/main/diagram/диаграмма_классов.png)
+
+[Отчет UML-диаграммы](https://github.com/ZabivakaXD/RPG-running-app/blob/main/diagram/Отчет_UML-диаграммы.pdf)
